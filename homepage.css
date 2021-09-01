@@ -1,0 +1,181 @@
+body {
+    font-family: Arial;
+    margin: 40px;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  img {
+    vertical-align: middle;
+  }
+  
+  .column1 img {
+      display: block;
+      border: 0;
+      width: 100%;
+      border-radius:20px;
+  }
+  
+  /* Position the image container (needed to position the left and right arrows) */
+  .container {
+    position: relative;
+  }
+  
+  /* Hide the images by default */
+  .mySlides {
+    display: none;
+  }
+  
+  /* Add a pointer when hovering over the thumbnail images */
+  .cursor {
+    cursor: pointer;
+  }
+  
+  /* Next & previous buttons */
+  .prev,
+  .next {
+    cursor: pointer;
+    position: absolute;
+    top: 40%;
+    width: auto;
+    padding: 16px;
+    margin-top: -50px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  
+  /* Position the "next button" to the right */
+  .next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+  }
+  
+  /* On hover, add a black background color with a little bit see-through */
+  .prev:hover,
+  .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  
+  /* Number text (1/3 etc) */
+  .numbertext {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+  }
+  
+  /* Container for image text */
+  .caption-container {
+    text-align: center;
+    background-color: #222;
+    padding: 2px 16px;
+    color: white;
+  }
+  
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  /* Six columns side by side */
+  .column {
+    float: left;
+    width: 16.66%;
+  }
+  
+  /* Add a transparency effect for thumnbail images */
+  .demo {
+    opacity: 0.6;
+  }
+  
+  .active,
+  .demo:hover {
+    opacity: 1;
+  
+  
+  }
+  .nav-whole{
+      margin-bottom:20px;
+  }
+  
+  .column1{
+      margin-bottom:5px;
+  }
+  /* Search Button css */
+  form.search-bar input[type=text] {
+      padding: 10px;
+      font-size: 17px;
+      border: 1px solid grey;
+      float: left;
+      width: 80%;
+      background: #f1f1f1;
+      border-radius: 10px;
+    }
+    
+    /* Style the submit button */
+    form.search-bar button {
+      float: left;
+      width: 20%;
+      padding: 10px;
+      background: #2196F3;
+      color: white;
+      font-size: 17px;
+      border: 1px solid grey;
+      border-left: none; /* Prevent double borders */
+      cursor: pointer;
+      border-radius: 10px;
+      height:47px;
+      
+    }
+    
+    form.search-bar button:hover {
+      background: #0b7dda;
+    }
+    
+    /* Clear floats */
+    form.search-bar::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+   /* Search bar end */ 
+  
+  @media screen and (min-width: 40em){
+  
+  .nav-whole{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content: space-between;
+  
+  }
+  
+  .column1{
+      flex-basis:20%;
+      align-self:flex-start;
+  
+  }
+  
+  .column2{
+      flex-basis: 40%;
+      padding-top: 40px;
+      margin-left:auto;
+      align-self:flex-end;
+  }
+    .cart-icon{
+        flex-basis: 10%;
+        padding-top:50px;
+        margin-left:20px;;
+        align-self:flex-end;
+    }
+
+      
+  
+  }

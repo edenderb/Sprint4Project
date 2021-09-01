@@ -1,0 +1,152 @@
+html {
+	font-family: sans-serif;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust:     100%;
+}
+
+img {
+	display: block;
+	border: 0;
+	width: 100%;
+    border-radius:20px;
+}
+.sidenav{
+    padding: .5em 1.4em 1em;
+    background: hsl(0, 0%, 90%);
+    width: 100%
+}
+
+.sidenav a{
+    display:block;
+    padding:.4em .4em;
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.5s ease;
+ 
+}
+.sidenav a:hover,
+.sidenav a:focus{
+    padding:.4em 1em;
+    background: hsl(0, 0%, 20%);
+    color: white;
+}
+.admin-add {
+    background-color: green;
+    border: none;
+    color: white;
+    width: 25%;
+    padding: 15px 32px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 20px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+  }
+
+  
+.admin-add:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+    opacity:0.7;
+  }
+.card{
+    background: #d1d1e0;
+    margin-bottom:2em;
+    
+}
+.card a {
+    color: black;
+    text-decoration: none;
+    padding-top:10px;
+}
+.card a:hover{
+    box-shadow: 3px 3px 8px hsl(0, 0%, 70%);
+}
+
+.card-content h3,
+.card-content h4{
+    margin-top: 0;
+    margin-bottom: .5em;
+    font-weight: normal;
+    padding-left: 40px;
+}
+.card-content p{
+    font-size: 95%;
+    padding-left:40px;
+    padding-right: 40px;
+    padding-bottom: 20px;
+}
+
+.menu-area{
+    margin-left:20px;
+}
+
+.nav-whole{
+    margin-bottom:20px;
+}
+
+
+@media screen and (min-width: 40em){
+
+    .nav-whole{
+        display:flex;
+        flex-wrap:wrap;
+        justify-content: space-between;
+    }
+
+    .column1{
+        
+        flex-basis:13%;
+    }
+
+    .column2{
+        flex-basis: 87%;
+        padding-top: 40px;
+    }
+
+    .whole{
+        display:flex;
+    }
+    .admin-area{
+        display: flex;
+        flex-direction:column;
+    }
+
+    .menu-area{
+        flex:1 1 auto;
+    }
+    .sidenav{
+        flex: 0 0 12em;
+    }
+
+    .cards{
+        display:flex;
+        flex-wrap:wrap;
+        justify-content: space-between;
+    }
+    .card{
+        display:flex;
+        flex: 0 1 clac(50% - .5em);
+    }
+    
+}
+@media screen and (min-width : 60em) {
+    .cards{
+        margin-top: inherit;
+    }
+    .card{
+        flex: 0 1 calc(33% - 1em);
+        margin-bottom: 2em
+    }
+}
+.carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img {
+    display: block;
+    max-width: 100%;
+    max-height: 180px;
+    height: auto;
+    
+}
