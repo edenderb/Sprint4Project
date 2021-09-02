@@ -398,7 +398,7 @@ img {
         ?>
         
         <div class ="categoryList">
-            <a href="admin.php?catid=<?php echo $category['catid'] ?>"><?php echo $category['Category'];?></a>
+            <a href="admin.php?catid=<?php echo  $category['catid'] ?>"><?php echo $category['Category'];?></a>
         </div>  <!--category list-->
         <div class = "deleteButton">
             <a href="deleteCategory.php?catid=<?php echo $category['catid'];?>" onClick="return confirm('Are you sure you want to delete?')">+</a>

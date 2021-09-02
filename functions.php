@@ -210,4 +210,13 @@ function random_num($length)
 		 $_SESSION['username']= $customer['username'];
 		return true;
 	 }
+
+	 function add_category($categoryName="?"){
+		 $conn=DB_open_connection();
+
+		 $sql="INSERT INTO Category (`catid`,`Category`) VALUES (NULL, '$categoryName')";
+		 $result = mysqli_query($conn, $sql);
+		 DB_close_connection($conn);
+		 return $result;
+	 }
 ?>
