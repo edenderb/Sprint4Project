@@ -1,24 +1,21 @@
 
 <?php
-require_once "functions.php";
-require_once "htmllib.php";
+ require_once "functions.php"; 
+ require_once "htmllib.php";
+ $addCategory='';
 if(isset($_POST['submit'])){
-  $id=isset($_POST['id'])?$_POST['id']:"";
-  $name=isset($_POST['name'])?$_POST['name']:"";
-  $description=isset($_POST['description'])?$_POST['description']:"";
-  $price=isset($_POST['price'])?$_POST['price']:"";
-  $image=isset($_POST['image'])?$_POST['image']:"";
-  $category=isset($_POST['category'])?$_POST['category']:"";
+	$categoryName=isset($_POST['categoryName'])?$_POST['categoryName']:"";
 
-  $msg=update_products($id,$name,$description,$price,$image,$category);
-  if($msg===true){
-   
-    echo "Item edited";
-  }else{
-     
-      echo "Item cannot be edited";
+	$addCategory=add_category($categoryName);
+    if($addCategory===true){
+      $added = "Category Added: ".$categoryName;
+    }else{
+    $added="Cannot Add category";
+    }
+  } else {
+  $categoryName="";
+	
   }
-}
 
 ?>
 <!DOCTYPE html>
@@ -401,17 +398,26 @@ img {
         ?>
         
         <div class ="categoryList">
-          <a href="admin.php?catid=<?php echo  $category['catid'] ?>"><?php echo $category['Category'];?></a>
-        </div>
+            <a href="admin.php?catid=<?php echo $category['catid'] ?>"><?php echo $category['Category'];?></a>
+        </div>  <!--category list-->
         <div class = "deleteButton">
-          <a href="#">+</a>
+            <a href="deleteCategory.php?catid=<?php echo $category['catid'];?>" onClick="return confirm('Are you sure you want to delete?')">+</a>
         </div>
-        
-          
-     
-
-      
             <?php } ?>
+        <div class = "addCategory">
+            <form action="admin.php" method="POST">
+              <input type="text" name="categoryName" id="categoryName" placeholder="Write category name here..">
+              <input type="submit" value="submit" id="submit" name="submit">
+                <h4 id="message">
+                  <?php 
+                    if(isset($added)){
+                      echo $added;
+                    }else {
+                      echo"";
+                    }
+          ?></h4>
+            </form>
+        </div>
     </div>
    <div class = "admin-area"> 
     <div class = "admin-add">
