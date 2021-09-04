@@ -406,8 +406,8 @@ img {
             <?php } ?>
         <div class = "addCategory">
             <form action="admin.php" method="POST">
-              <input type="text" name="categoryName" id="categoryName" placeholder="Write category name here..">
-              <input type="submit" value="submit" id="submit" name="submit">
+              <input type="text" name="categoryName" id="categoryName" placeholder="New Category">
+              <input type="submit" value="ADD" id="submit" name="submit">
                 <h4 id="message">
                   <?php 
                     if(isset($added)){

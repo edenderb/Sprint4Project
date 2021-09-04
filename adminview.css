@@ -65,7 +65,7 @@ img {
     width: 100%
 }
 
-/* .sidenav a{
+.sidenav a{
     display:block;
     padding:.5em .5em;
     color: inherit;
@@ -76,7 +76,7 @@ img {
     margin-bottom: 5px;
     border-radius: 5px;
  
-} */
+} 
 
 .sidenav a:hover,
 .sidenav a:focus{
@@ -166,6 +166,35 @@ img {
         transition: border .2s ease-in-out;
         margin-left: 10px;
         margin-right:10px;
+}
+/* css for popup screen */
+.bg-popup{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display:none;
+}
+.popup-content{
+    width :600px;
+    height: 600px;
+    background-color: white;
+    position: relative;
+    overflow-y: scroll;
+}
+.close{
+    position: absolute;
+    top: 0;
+    right: 14px;
+    transform: rotate(45deg);
+    font-size: 4em;
+    cursor: pointer;
+
 }
 
 @media screen and (min-width: 40em){

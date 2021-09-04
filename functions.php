@@ -219,4 +219,8 @@ function random_num($length)
 		 DB_close_connection($conn);
 		 return $result;
 	 }
+
+	 function find_ingredients_by_id(){
+		 
+	 }
 ?>

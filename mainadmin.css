@@ -65,7 +65,7 @@ img {
     width: 100%
 }
 
-.categoryList{
+.sidenav a{
     display:block;
     padding:.5em .5em;
     color: inherit;
@@ -78,8 +78,8 @@ img {
  
 }
 
-.categoryList:hover,
-.categoryList:focus{
+..sidenav a:hover,
+..sidenav a:focus{
     padding:.4em 1em;
     background: hsl(0, 0%, 20%);
     color: white;
@@ -128,10 +128,10 @@ img {
     text-decoration: none;
     padding-top:10px;
 }
-/*
+
 .card a:hover{
     box-shadow: 3px 3px 8px hsl(0, 0%, 70%);
-}*/
+}
 
 .card-content h3,
 .card-content h4{

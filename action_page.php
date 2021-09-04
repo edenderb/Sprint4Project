@@ -1,18 +1,16 @@
 <?php 
+ require_once "functions.php";
+ require_once "dblib.php";
 
-$status=$_POST['statuscode'];
-$amount=$_POST['amount'];
+ $id= $_GET['ID'];
+ echo $id;
 
-  if($statuscode==="A" && $amount>10000){
-      echo "Preffered";
-  } else if($statuscode==="B" && $amount>1000){
-      echo "Regular";
-  } else if($statuscode==="C" && $amount>100){
-      echo "Caution";
-  } else if($statuscode==="D" && $amount<100){
-      echo "Avoid";
-  } else {
-      echo "Wrong Input";
-  }
+ $shows= find_product_matching($id);
+ 
+ while($show= mysqli_fetch_assoc($shows)){
+     echo $show['Productname'];
+ }
+
+
 
 ?>
