@@ -32,109 +32,7 @@ if(isset($_POST['submit'])){
 <!-- <link rel="stylesheet" href="admin.css"> -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-</head>
-
-<div class= "nav-whole">
-  <div class="column1">
-    <a class="brand" href="#"><img src="logo.jpeg" width=100% height="180px"></a>
-  </div>
-  <div class= "column2">
-    <form class="search-bar" action="#">
-      <input type="text" placeholder="Search..." name="search">
-      <button type="submit" ><i class="fa fa-search"></i></button>
-    </form>
-  </div>
-  
-</div><!-- nav-whole-->
-  <nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="#">Shah Ghouse Restaurant</a>
-      </div>
-      <ul class="nav navbar-nav">
-          <li><a href="homepageadmin.php">Home</a></li>
-          <li> <a href="adminmenu.php">Menu</a></li>
-          <li><a href="#">About Us</a></li>
-			    <li><a href="#">Contact</a></li>
-          <li class="active"><a href="admin.php">Admin</a></li>
-          <li><a href="customers/show.php">Manage Customers</a></li>
-
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> ADMIN</a>
-				  <ul class="dropdown-menu">
-					  <li><a href="profile.php">Profile</a></li>
-					  <li><a href="logout.php">Logout</a></li>
-				  </ul>
-			  </li>
-      </ul>
-    </div>
-  </nav>
-
-
-
-<div class="whole">
-    <div class="sidenav">
-        <?php 
-            $category_name = get_categories_name();
-            $count = mysqli_num_rows ($category_name);
-   
-            for ($i = 0; $i < $count; $i++){
-            $category = mysqli_fetch_assoc($category_name);
-        ?>
-        
-        <div class ="categoryList">
-          <div class="categoryText">
-            <a href="admin.php?catid=<?php echo  $category['catid'] ?>"><?php echo $category['Category'];?></a>
-          </div>
-          <a href="deleteCategory.php?catid=<?php echo $category['catid'];?>" onClick="return confirm('Are you sure you want to delete?')"><div class="deleteButton"></div></a>
-        </div>  <!--category list-->
-            <?php } ?>
-      
-            <form action="admin.php" method="POST">
-              <input type="text" class = "textFieldStyle" name="categoryName" id="categoryName" placeholder="Enter Category Type">
-              <input type="submit" class = "submitButton" value="submit" id="submit" name="submit">
-                <h4 id="message">
-                  <?php 
-                    if(isset($added)){
-                      echo $added;
-                    }else {
-                      echo"";
-                    }
-          ?></h4>
-            </form>
-   
-    </div>
-   <div class = "admin-area"> 
-    <div class = "admin-add">
-        <a href="additem.php"><button class="add" value = "Add Item">Add Item</button></a>
-    </div>
-    <div class="menu-area">
-        <div class="categheading"> <!-- Fetching Category Names -->
-            <?php
-                $catid = $_GET['catid'] ?? '1';
-                $headings = find_categories($catid);
-
-                while($heading = mysqli_fetch_assoc($headings)){
-            ?>
-      <h1> <?php echo $heading['Category']; ?> </h1>
-      <?php } ?>
-      <hr/>
-    </div>
-    <div class="menu-items">
-      <div class = "centered">
-        <section class = "cards">
-          
-		    <?php include "adminedit.php"?> <!-- Importing menu products -->
-        
-        </section> <!--cards-->
-      </div> <!--centered-->   
-    </div><!--menu-items-->  
-  </div><!--menu-area-->  
-</div><!--admin_area-->
-</div><!--whole-->
-
-<style>
+  <style>
 body {
   font-family: Arial, Helvetica, sans-serif;
   margin: 40px ;
@@ -147,7 +45,7 @@ body {
 .submitButton{
   color: #fff;
   width: 100px;
-  height: 50px;
+  height: 30px;
   box-shadow:4px 3px 7px rgba(19.12500075995922, 6.644343892112374, 3.904687575995922, 0.4000000059604645);
 	  background-color:rgba(0,0,0, 0);
     border: solid 2px;
@@ -174,7 +72,7 @@ border: solid 2px;
     margin-bottom: 5px;
     border-radius: 10px;
 	width:259px;
-	height: 70px;;
+	height: 40px;;
    box-shadow:4px 3px 7px rgba(19.12500075995922, 6.644343892112374, 3.904687575995922, 0.4000000059604645);
 	  background-color:rgba(255,255,255, 1);
 
@@ -245,15 +143,10 @@ img {
 }
 .sidenav{
     padding: .5em 1em 1em;
-  
     width: 100%;
     overflow:hidden;
    background-color:rgba(44.28854249417782, 76.84424176812172, 87.12500050663948, 1);
    border-radius: 28px;
-
- 
-   
-    
   }
   
   
@@ -290,17 +183,24 @@ img {
     padding:.4em 1em;
     background: hsl(0, 0%, 20%);
     color: white;
+    text-decoration: none;
+}
+.categoryList a:hover,
+.categoryList a:focus{
+    text-decoration: none;
+    color: white;
+    
 }
 
-.deleteButton{
+.deleteButton {
   margin-top: 5px;
   width:16px;
 	height:18px;
 	background-image:url(images/deleteCross.png);
 	background-repeat:no-repeat;
 	background-size:cover;
+  
 }
-
 
 .add {
     background-color: green;
@@ -338,10 +238,10 @@ img {
     text-decoration: none;
     padding-top:10px;
 }
-/*
+
 .card a:hover{
     box-shadow: 3px 3px 8px hsl(0, 0%, 70%);
-}*/
+}
 
 .card-content h3,
 .card-content h4{
@@ -430,10 +330,10 @@ img {
         flex:1 1 auto;
     }
     .sidenav{
-        flex-wrap: wrap;
-        flex: 0 0 12em;
-        display : flex;
-       
+      flex: 0 0 12em;
+      display : flex;  
+      flex-wrap: wrap;
+         
     }
 
     .cards{
@@ -502,9 +402,9 @@ img {
     
 }
 
-
 </style>
-<<<<<<< HEAD
+</head>
+
 <body>
 <div class= "nav-whole">
   <div class="column1">
@@ -555,27 +455,28 @@ img {
             $category = mysqli_fetch_assoc($category_name);
         ?>
         
-        <div class ="categoryList">
-            <a href="admin.php?catid=<?php echo  $category['catid'] ?>"><?php echo $category['Category'];?></a>
-        </div>  <!--category list-->
-        <div class = "deleteButton">
-            <a href="deleteCategory.php?catid=<?php echo $category['catid'];?>" onClick="return confirm('Are you sure you want to delete?')">+</a>
-        </div>
+            <div class ="categoryList">
+                <a href="admin.php?catid=<?php echo  $category['catid'] ?>"><?php echo $category['Category'];?></a>
+            </div><!--category list-->
+            <div class = "deleteDiv">
+                <a href="deleteCategory.php?catid=<?php echo $category['catid'];?>" onClick="return confirm('Are you sure you want to delete?')"><div class = "deleteButton"></div></a>
+            </div>
             <?php } ?>
-        <div class = "addCategory">
-            <form action="admin.php" method="POST">
-              <input type="text" name="categoryName" id="categoryName" placeholder="New Category">
-              <input type="submit" value="ADD" id="submit" name="submit">
-                <h4 id="message">
-                  <?php 
-                    if(isset($added)){
-                      echo $added;
-                    }else {
-                      echo"";
-                    }
-          ?></h4>
-            </form>
-        </div>
+            <div class = "addCategory">
+                <form action="admin.php" method="POST">
+                  <input type="text" class="textFieldStyle" name="categoryName" id="categoryName" placeholder="New Category">
+                  <input type="submit" class = "submitButton" value="ADD" id="submit" name="submit">
+                    <h4 id="message">
+                      <?php 
+                        if(isset($added)){
+                          echo $added;
+                        }else {
+                          echo"";
+                        }
+              ?></h4>
+                </form>
+            </div>
+        
     </div>
    <div class = "admin-area"> 
     <div class = "admin-add">
@@ -605,8 +506,6 @@ img {
   </div><!--menu-area-->  
 </div><!--admin_area-->
 </div><!--whole-->
-=======
->>>>>>> 22b9c0bc667cd1d226e2678b1b8f81730811f228
 
 
 </html>

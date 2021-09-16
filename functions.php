@@ -93,7 +93,7 @@ function random_num($length)
 	    //open
 	    $conn=DB_open_connection();
 
-	    $sql = "SELECT * FROM Category1 WHERE id='{$id}'";
+	    $sql = "SELECT * FROM Category1 WHERE ID='{$id}'";
 	    $result=mysqli_query($conn,$sql);
 
 	    DB_close_connection($conn);

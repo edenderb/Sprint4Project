@@ -12,7 +12,7 @@
         ?>
 		<article class="card">
 		
-           <a href="#" id="button">
+           <a href="ingredients/show.php?ID=<?php echo $product['ID'];?>" id="button">
 			   <div class="image-holder" >     
 					<img src=<?php echo $product['Image']; ?> alt="Food Items" height="220px">
 		   </div>

@@ -49,12 +49,6 @@ include "admin_header.php";
 </div><!--whole-->
 
 
-<script>
-  document.getElementById('button').addEventListener('click', function(){
-    document.querySelector('.bg-popup').style.display = 'flex';
-  })
-  document.querySelector('.close').addEventListener('click', function(){
-    document.querySelector('.bg-popup').style.display='none';
-  })
+
 </script>
 </html>
