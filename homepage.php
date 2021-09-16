@@ -7,10 +7,17 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href= "homepage.css">
+
+<link rel="stylesheet" href="css/homepage.css">
+
+<link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
+
+
 
 <body>
 <div class= "nav-whole">
@@ -35,7 +42,9 @@
     <ul class="nav navbar-nav">
       <li class="active"><a href="#">Home</a></li>
       <li> <a href="customermenu.php">Menu</a></li>
-      <li><a href="#">About Us</a></li>
+      <li><a href="#">About Us
+
+      </a></li>
 			<li><a href="#">Contact</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
@@ -50,12 +59,12 @@
   </div>
 </nav>
 
-<div class="container">
-  <h3>Check out Some of our Poplulars</h3>
+<div>
+  <h3 class= "text1">CHECK OUT POPULAR ITEMS</h3>
 
 </div>
 
-<h2 style="text-align:center">Shah Ghouse Products</h2>
+<h2 class="text2">SHAH GHOUSE PRODUCTS</h2>
 
 <div class="container">
   <div class="mySlides">
