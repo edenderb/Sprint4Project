@@ -2,17 +2,7 @@
 <?php
 require_once "functions.php";
 require_once "htmllib.php";
-
-$msg='';
-if(isset($_POST['submit'])){
-	$name=isset($_POST['name'])?$_POST['name']:"";
-	$description=isset($_POST['description'])?$_POST['description']:"";
-	$price=isset($_POST['price'])?$_POST['price']:"";
-	$image=isset($_POST['image'])?$_POST['image']:"";
-	$category=isset($_POST['category'])?$_POST['category']:"";
-
-	$msg=add_product($name,$description,$price,$image,$category);
-}
+require_once "dblib.php";
 
 include "admin_header.php";
 ?>
@@ -59,4 +49,12 @@ include "admin_header.php";
 </div><!--whole-->
 
 
+<script>
+  document.getElementById('button').addEventListener('click', function(){
+    document.querySelector('.bg-popup').style.display = 'flex';
+  })
+  document.querySelector('.close').addEventListener('click', function(){
+    document.querySelector('.bg-popup').style.display='none';
+  })
+</script>
 </html>

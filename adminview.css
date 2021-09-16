@@ -56,7 +56,7 @@ img {
 	display: block;
 	border: 0;
 	width: 100%;
-    border-radius:100px;
+    border-radius:20px;
 }
 
 .sidenav{
@@ -76,23 +76,16 @@ img {
     margin-bottom: 5px;
     border-radius: 5px;
  
-}
+} 
 
-..sidenav a:hover,
-..sidenav a:focus{
+.sidenav a:hover,
+.sidenav a:focus{
     padding:.4em 1em;
     background: hsl(0, 0%, 20%);
     color: white;
 }
 
-.deleteButton{
-    display: block;
-    border: solid 1px;
-    color: yellow;
-
-}
-
-.add {
+.admin-add {
     background-color: green;
     border: none;
     color: white;
@@ -100,7 +93,6 @@ img {
     padding: 15px 32px;
     position: relative;
     text-align: center;
-    float: right;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
@@ -111,8 +103,8 @@ img {
     transition-duration: 0.4s;
   }
   
- 
-.add:hover {
+  
+.admin-add:hover {
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
     opacity:0.7;
   }
@@ -175,6 +167,35 @@ img {
         margin-left: 10px;
         margin-right:10px;
 }
+/* css for popup screen */
+.bg-popup{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display:none;
+}
+.popup-content{
+    width :600px;
+    height: 600px;
+    background-color: white;
+    position: relative;
+    overflow-y: scroll;
+}
+.close{
+    position: absolute;
+    top: 0;
+    right: 14px;
+    transform: rotate(45deg);
+    font-size: 4em;
+    cursor: pointer;
+
+}
 
 @media screen and (min-width: 40em){
 
@@ -186,9 +207,9 @@ img {
     }
 
     .column1{
+    
         flex-basis:20%;
         align-self:flex-start;
-    
     }
 
     .column2{
@@ -212,9 +233,7 @@ img {
     .admin-area{
         display: flex;
         flex-direction:column;
-        width:100%;
     }
-    
     .menu-area{
         flex:1 1 auto;
     }
@@ -230,45 +249,6 @@ img {
     .card{
         flex: 0 1 clac(50% - .5em);
     }
-    .edit{
-        background-color: #666699; /* edit */
-        border: none;
-        color: white;
-        padding: 15px 32px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 0px 40px 40px 40px;
-        cursor: pointer;
-        border-radius: 20px;
-        -webkit-transition-duration: 0.4s; /* Safari */
-        transition-duration: 0.4s;
-      }
-    .edit:hover {
-        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
-      }
-    .delete {
-        margin-left: 40px;
-        margin-right: 40px;
-        background-color: #ff3300; /* Red */
-        border: none;
-        color: white;
-        padding: 15px 32px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        
-        cursor: pointer;
-        border-radius: 20px;
-        -webkit-transition-duration: 0.4s; /* Safari */
-        transition-duration: 0.4s;      
-    }
-    .delete:hover {
-        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
-    }
-    
     
 }
 @media screen and (min-width : 60em) {
