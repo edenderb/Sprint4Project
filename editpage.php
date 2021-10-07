@@ -7,8 +7,27 @@
     
     
       
-        $id=$_GET['ID'];
-        $products= find_product_matching($id)
+        $id=$_GET['ProductID']??"";
+        $products= find_product_matching($id);
+        $msg='';
+if(isset($_POST['submit'])){
+  $edit_id = isset($_POST['id'])?$_POST['id']:"";
+  $name=isset($_POST['name'])?$_POST['name']:"";
+  $description=isset($_POST['description'])?$_POST['description']:"";
+  $price=isset($_POST['price'])?$_POST['price']:"";
+  $image=isset($_POST['image'])?$_POST['image']:"";
+  $category=isset($_POST['category'])?$_POST['category']:"";
+  
+  $msg=update_products($edit_id,$name,$description,$price,$image,$category);
+        
+            if($msg===true){
+              $edited = "Product Edited: ".$name;
+            }else{
+              $edited="Cannot edit Item";
+            }
+          
+}
+       
 ?>
 
 <!DOCTYPE html>
@@ -162,7 +181,7 @@ input[type=reset]:hover {
       <li><a href="homepageadmin.php">Home</a></li>
       <li> <a href="adminmenu.php">Menu</a></li>
       <li><a href="#">About Us</a></li>
-			<li><a href="#">Contact</a></li>
+			<li><a href="ContactForm/admin_contact.php">Contact</a></li>
       <li class="active"><a href="admin.php">Admin</a></li>
       <li><a href="show.php">Manage Customers</a></li>
 
@@ -170,7 +189,6 @@ input[type=reset]:hover {
     <ul class="nav navbar-nav navbar-right">
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> ADMIN</a>
 				<ul class="dropdown-menu">
-					<li><a href="profile.php">Profile</a></li>
 					<li><a href="logout.php">Logout</a></li>
 				</ul>
 			</li>
@@ -180,14 +198,14 @@ input[type=reset]:hover {
 
   <div class="form" id="productform" >
 
-  	<form action="admin.php" method="POST">
+  	<form action="editpage.php" method="POST">
       
 
       <div class="container">
         <h4 id="message">
           <?php 
-          if(isset($added)){
-            echo $added;
+          if(isset($edited)){
+            echo $edited;
           }else {
             echo"";
           }
@@ -199,10 +217,10 @@ input[type=reset]:hover {
         
             ?>
         <label for="id">Product ID:</label><br>
-  		 <input type="text" id="id" name="id" value="<?php echo $product['ID'];?>" required><br><br>
+  		 <input type="text" id="id" name="id" value="<?php echo $product['ProductID'];?>" required><br><br>
 
   		 <label for="name">Name:</label><br>
-  		 <input type="text" id="name" name="name" value="<?php echo $product['Productname'];?>" required><br><br>
+  		 <input type="text" id="name" name="name" value="<?php echo $product['ProductName'];?>" required><br><br>
 
   		 <label for="description">Description:</label><br>
   		 <input type="text" id="description" name="description" value="<?php echo $product['Description'];?>" required><br><br>
@@ -218,8 +236,8 @@ input[type=reset]:hover {
 			 $choices=array();
 			 $list=array_values(get_categories());
 			 foreach($list as $item){
-				$id=$item['catid'];
-				$name=$item['Category'];			
+				$id=$item['CategoryID'];
+				$name=$item['Name'];			
 				$choices[$id]=$name;
 			 }
 			 echo html_create_select($choices, 'category', 'Category','');
@@ -230,7 +248,7 @@ input[type=reset]:hover {
        <br>
   		 <input  type="submit" name="submit" value="Edit">
   		 <input  type="reset" name="reset "value="Clear">
-  		 <a href = "admin.php"><input  type="button" value="Cancel" />
+  		 <a href = "admin.php"><input  type="button" value="Cancel" /></a>
 </div>
       </form>
 

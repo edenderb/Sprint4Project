@@ -413,10 +413,6 @@ img {
     <a class="brand" href="#"><img src="logo.jpeg" width=100% height="180px"></a>
   </div>
   <div class= "column2">
-    <form class="search-bar" action="#">
-      <input type="text" placeholder="Search..." name="search">
-      <button type="submit" ><i class="fa fa-search"></i></button>
-    </form>
   </div>
   
 </div><!-- nav-whole-->
@@ -429,9 +425,9 @@ img {
           <li><a href="homepageadmin.php">Home</a></li>
           <li> <a href="adminmenu.php">Menu</a></li>
           <li><a href="#">About Us</a></li>
-			    <li><a href="#">Contact</a></li>
+			    <li><a href="ContactForm/admin_contact.php">Contact</a></li>
           <li class="active"><a href="admin.php">Admin</a></li>
-          <li><a href="customers/show.php">Manage Customers</a></li>
+          <li><a href="customers/show.php">Manage Enquiry</a></li>
 
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -458,17 +454,17 @@ img {
         ?>
         
             <div class ="categoryList">
-                <a href="admin.php?catid=<?php echo  $category['catid'] ?>"><?php echo $category['Category'];?></a>
+                <a href="admin.php?CategoryID=<?php echo  $category['CategoryID'] ?>"><?php echo $category['Name'];?></a>
             </div><!--category list-->
             <div class = "deleteDiv">
-                <a href="deleteCategory.php?catid=<?php echo $category['catid'];?>" onClick="return confirm('Are you sure you want to delete?')"><div class = "deleteButton"></div></a>
+                <a href="deleteCategory.php?CategoryID=<?php echo $category['CategoryID'];?>" onClick="return confirm('Are you sure you want to delete?')"><div class = "deleteButton"></div></a>
             </div>
             <?php } ?>
             <div class = "addCategory">
                 <form action="admin.php" method="POST">
                   <input type="text" class="textFieldStyle" name="categoryName" id="categoryName" placeholder="New Category">
                   <input type="submit" class = "submitButton" value="ADD" id="submit" name="submit">
-                    <h4 id="message">
+                    <h4 id="message" style= "color:white;">
                       <?php 
                         if(isset($added)){
                           echo $added;
@@ -487,12 +483,12 @@ img {
     <div class="menu-area">
         <div class="categheading"> <!-- Fetching Category Names -->
             <?php
-                $catid = $_GET['catid'] ?? '1';
+                $catid = $_GET['CategoryID'] ?? '1';
                 $headings = find_categories($catid);
 
                 while($heading = mysqli_fetch_assoc($headings)){
             ?>
-      <h1> <?php echo $heading['Category']; ?> </h1>
+      <h1> <?php echo $heading['Name']; ?> </h1>
       <?php } ?>
       <hr/>
     </div>

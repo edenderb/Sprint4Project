@@ -8,7 +8,7 @@ function check_login($conn)
 	{
 
 		$user_name = $_SESSION['username'];
-		$query = "select * from Adminlogin where username = '$user_name' limit 1";
+		$query = "select * from Admin where AdminName = '$user_name' limit 1";
 
 		$result = mysqli_query($conn,$query);
 		if($result && mysqli_num_rows($result) > 0)
@@ -52,7 +52,7 @@ function random_num($length)
 		//open
 	   $conn=DB_open_connection();
 
-	   $sql = "SELECT * FROM Category1";
+	   $sql = "SELECT * FROM Product";
 
 	   $rows=DB_selectquery($sql,$conn);
 
@@ -66,7 +66,7 @@ function random_num($length)
 		//open
 	   $conn=DB_open_connection();
 
-	   $sql = "SELECT * FROM  category";
+	   $sql = "SELECT * FROM  Category";
 
 	   $rows=DB_select($sql,$conn);
 
@@ -80,7 +80,7 @@ function random_num($length)
 	    //open
 	    $conn=DB_open_connection();
 
-	    $sql = "SELECT * FROM category";
+	    $sql = "SELECT * FROM Category";
 	    $rows=DB_selectquery($sql,$conn);
 
 	    DB_close_connection($conn);
@@ -93,7 +93,7 @@ function random_num($length)
 	    //open
 	    $conn=DB_open_connection();
 
-	    $sql = "SELECT * FROM Category1 WHERE ID='{$id}'";
+	    $sql = "SELECT * FROM Product WHERE ProductID='{$id}'";
 	    $result=mysqli_query($conn,$sql);
 
 	    DB_close_connection($conn);
@@ -101,12 +101,13 @@ function random_num($length)
 	    return $result;
 	 }
 
-	 function add_product($name="?",$description="?",$price=0,$image='',$category="?"){
+	 function add_product($name="?",$description="?",$price=0,$image="?",$category="?"){
 
-			$sql="INSERT INTO Category1 (`ID`, `Productname`, `Description`, `Price`, `Image`, `catid`)
-							   VALUES (NULL,'$name','$description',$price,'$image','$category')";
+		$conn=DB_open_connection();
+			$sql="INSERT INTO Product (`ProductID`, `ProductName`, `Price`, `Description`, `Image`, `CategoryID`)
+							   VALUES (NULL, '$name', $price, '$description', '$image','$category')";
 
-	        $conn=DB_open_connection();
+	       
 
 			$status=DB_insert($conn,$sql);
 			
@@ -116,15 +117,9 @@ function random_num($length)
 
 	  
 	 }
-	 function update_products($id, $name, $description, $price, $image, $category){
+	 function update_products($edit_id, $name, $description, $price, $image, $category){
        $conn=DB_open_connection();
-	   $sql="UPDATE Category1 SET ";
-	   $sql .= "Productname='" . $name . "' ";
-	   $sql .= "Description='" . $description . "' ";
-	   $sql .= "Price='" . $price . "' ";
-	   $sql .= "Image='" . $image . "' ";
-	   $sql .= "catid='" . $category . "' ";
-	   $sql .="WHERE ID='" . $id . "';";
+	   $sql="UPDATE `Product` SET `ProductID`='$edit_id',`ProductName`='$name',`Price`='$price',`Description`='$description',`Image`='$image',`CategoryID`='$category' WHERE `ProductID`= '$edit_id'";
 	   
 	   $result=mysqli_query($conn, $sql);
 	   DB_close_connection($conn);
@@ -133,7 +128,7 @@ function random_num($length)
 	 
 	 function find_categories($catid){
 		$conn= DB_open_connection(); 
-		$sql="Select Category from Category where catid='" .$catid."'";
+		$sql="Select Name from Category where CategoryID='" .$catid."'";
 		$result=mysqli_query($conn,$sql);
         DB_close_connection($conn);
 		 return $result;
@@ -142,26 +137,14 @@ function random_num($length)
 	 function categorise($catid){
 		 $conn = DB_open_connection();
 
-		 $sql =  "Select * from Category1 where catid = '" .$catid. "'";
+		 $sql =  "Select * from Product where CategoryID = '" .$catid. "'";
 		 $result = mysqli_query ($conn, $sql);
 
 		 DB_close_connection($conn);
 		 return $result;
 	 }
 
-	 function find_customers_byid($id){	 
-	 }
 
-	 function insert_admins($full_name, $email, $username, $phone, $password){
-		$conn=DB_open_connection();
-		$hashed_password = password_hash($password, PASSWORD_BCRYPT);
-		$sql="INSERT INTO customers (`id`, `full_name`, `email`, `username`, `phone`, `hashed_password`) VALUES (NULL, '$full_name', '$email', '$username', '$phone', '$hashed_password');"; 
-		$row = mysqli_query($conn, $sql);
-		
-		DB_close_connection($conn);
-
-			return $row;
-	}
 	 function is_post_request() {
 		return $_SERVER['REQUEST_METHOD'] == 'POST';
 	  }
@@ -170,57 +153,53 @@ function random_num($length)
 		return $_SERVER['REQUEST_METHOD'] == 'GET';
 	  }
 	 
-	 
-	  function show_customers(){
-		 $conn=DB_open_connection();
-
-		 $sql="SELECT * FROM customers;";
-		 $result = mysqli_query($conn, $sql);
-		DB_close_connection($conn);
-		 return $result;
-	 } 
-
-	 function find_customer_by_id($id){
-		 $conn=DB_open_connection();
-
-		 $sql= "SELECT * FROM customers ";
-		 $sql .= "WHERE id = '" . $id . "'";
-		 $sql .= "LIMIT 1 ";
-		 $result = mysqli_query($conn, $sql);
-		 return $result;
-	 }
-	 function find_customer_by_username($username){
-		$conn=DB_open_connection();
-
-		$sql= "SELECT * FROM customers ";
-		$sql .= "WHERE username = '" . $username . "'";
-		$sql .= "LIMIT 1 ";
-		$result = mysqli_query($conn, $sql);
-		$customer = mysqli_fetch_assoc($result);
-		mysqli_free_result($result);
-		return $customer;
-	}
-	 
-
-	 /* functions for Authorization */
-	 function log_in_customer($customer){
-		 session_regenerate_id();
-		 $_SESSION['customer_id']=$customer['id'];
-		 $_SESSION['last_login']= time();
-		 $_SESSION['username']= $customer['username'];
-		return true;
-	 }
 
 	 function add_category($categoryName="?"){
 		 $conn=DB_open_connection();
 
-		 $sql="INSERT INTO Category (`catid`,`Category`) VALUES (NULL, '$categoryName')";
+		 $sql="INSERT INTO Category (`CategoryID`, `Name`) VALUES (NULL, '$categoryName')";
 		 $result = mysqli_query($conn, $sql);
 		 DB_close_connection($conn);
 		 return $result;
 	 }
 
-	 function find_ingredients_by_id(){
+	 function find_ingredients_by_product_id($id){
+		 $conn = DB_open_connection();
+
+		 $sql = "SELECT * FROM Ingredient WHERE ProductID='$id';";
+		 $result = mysqli_query($conn, $sql);
+
+		 DB_close_connection($conn);
+		  return $result;
 		 
 	 }
+
+	 function insert_new_ingredient_by_id($ingredient_name="?", $id="?", $description="?"){
+		 $conn = DB_open_connection();
+
+		 $sql= "INSERT INTO Ingredient (`IngredientID`, `Name`, `Description`, `ProductID`) VALUES (NULL, '$ingredient_name', '$description', '$id')";
+		 $result = mysqli_query($conn, $sql);
+
+		 DB_close_connection($conn);
+		  return $result;
+	 }
+
+	 function send_customer_enquiry($username="?", $email="?", $phone="?", $message="?"){
+		$conn=DB_open_connection();
+		
+		$sql="INSERT INTO `CustomerInquiry`(`msg_id`, `username`, `email`, `phone`, `message`) VALUES (NULL,'$username','$email','$phone','$message');"; 
+		$row = mysqli_query($conn, $sql);
+		
+		DB_close_connection($conn);
+
+			return $row;
+	}
+	function show_enquiry_details(){
+		$conn=DB_open_connection();
+
+		$sql="SELECT * FROM CustomerInquiry;";
+		$result = mysqli_query($conn, $sql);
+	   DB_close_connection($conn);
+		return $result;
+	} 
 ?>

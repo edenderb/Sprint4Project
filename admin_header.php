@@ -36,13 +36,9 @@ body {
     <a class="brand" href="#"><img src="logo.jpeg"  width="100%" height="180px"></a>
   </div>
   <div class= "column2">
-    <form class="search-bar" action="#">
-      <input type="text" placeholder="Search..." name="search">
-      <button type="submit" ><i class="fa fa-search"></i></button>
-    </form>
+    
   </div>
   <div class="cart-icon" style="margin-bottom: 15px;">
-    <button style="width: 100%"><i class="fa fa-shopping-cart" style="font-size: 42px;"></i></button>
   </div>
 </div><!-- nav-whole-->
     <nav class="navbar navbar-inverse">
@@ -54,14 +50,13 @@ body {
           <li><a href="homepageadmin.php">Home</a></li>
           <li class="active"> <a href="adminmenu.php">Menu</a></li>
           <li><a href="#">About Us</a></li>
-			    <li><a href="#">Contact</a></li>
+			    <li><a href="ContactForm/admin_contact.php">Contact</a></li>
           <li ><a href="admin.php">Admin</a></li>
-          <li><a href="customers/show.php">Manage Customers</a></li>
+          <li><a href="customers/show.php">Manage Enquiry</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
           <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> ADMIN</a>
 				  <ul class="dropdown-menu">
-					  <li><a href="profile.php">Profile</a></li>
 					  <li><a href="logout.php">Logout</a></li>
 				  </ul>
 			  </li>

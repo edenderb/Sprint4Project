@@ -88,7 +88,7 @@ button:hover {
 		<table border:2px>
 		<?php
             
-            $catid = $_GET['catid'] ?? '1';
+            $catid = $_GET['CategoryID'] ?? '1';
 			    $products = categorise($catid);
 
            while($product = mysqli_fetch_assoc($products)){
@@ -98,7 +98,7 @@ button:hover {
 				<td rowspan=5> <img src=<?php echo $product['Image']; ?> height=250px width= 350px>
 				</tr>
 				<tr>
-			    <th colspan=2> <?php echo $product['Productname']; ?> </td>
+			    <th colspan=2> <?php echo $product['ProductName']; ?> </td>
 				</tr>
 				<tr>
 				<td colspan=2> $ <?php echo $product['Price']; ?> </td>
@@ -108,7 +108,7 @@ button:hover {
 				</tr>
                 <tr>
 				<td> <input type='button' name='btnedit' value=edit> </td>
-                <td>  <Button><a href='delete.php?ID=<?php echo $product['ID'];?>&catid=<?php echo $catid; ?>' onClick="return confirm('Are you sure you want to delete?')">Delete</a></button>  </td>
+                <td>  <Button><a href='delete.php?ProductID=<?php echo $product['ProductID'];?>&CategoryID=<?php echo $catid; ?>' onClick="return confirm('Are you sure you want to delete?')">Delete</a></button>  </td>
 				</tr>
         
         <?php } ?>

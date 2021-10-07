@@ -17,7 +17,7 @@ session_start();
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  <link rel="stylesheet" href="homepage.css">
+  <link rel="stylesheet" href="css/homepage.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
@@ -28,10 +28,6 @@ session_start();
     <a class="brand" href="#"><img src="logo.jpeg" width=100% height="180px"></a>
   </div>
   <div class= "column2">
-    <form class="search-bar" action="#">
-      <input type="text" placeholder="Search..." name="search">
-      <button type="submit" ><i class="fa fa-search"></i></button>
-    </form>
   </div>
   
 </div><!-- nav-whole-->
@@ -44,14 +40,13 @@ session_start();
           <li class="active"><a href="homepageadmin.php">Home</a></li>
           <li> <a href="adminmenu.php">Menu</a></li>
           <li><a href="#">About Us</a></li>
-			    <li><a href="#">Contact</a></li>
+			    <li><a href="ContactForm/admin_contact.php">Contact</a></li>
           <li><a href="admin.php">Admin</a></li>
-          <li><a href="scustomers/how.php">Manage Customers</a></li>
+          <li><a href="customers/show.php">Manage Customers</a></li>
       </ul>
     <ul class="nav navbar-nav navbar-right">
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> ADMIN</a>
 				<ul class="dropdown-menu">
-					<li><a href="profile.php">Profile</a></li>
 					<li><a href="logout.php">Logout</a></li>
 				</ul>
 			</li>
@@ -61,7 +56,7 @@ session_start();
 
 <div class="container">
 
-  <h2> Welcome <?php echo $user_data['username']; ?>
+  <h2> Welcome Admin
     <hr>
   <h3>Check out Some of our Poplulars </h3>
 

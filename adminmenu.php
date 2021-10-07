@@ -19,7 +19,7 @@ include "admin_header.php";
     for ($i = 0; $i < $count; $i++){
       $category = mysqli_fetch_assoc($category_name);
     ?>
-      <a href="adminmenu.php?catid=<?php echo $category['catid'] ?>"><?php echo $category['Category'];?></a>
+      <a href="adminmenu.php?CategoryID=<?php echo $category['CategoryID'] ?>"><?php echo $category['Name'];?></a>
 
       
       <?php } ?>
@@ -27,12 +27,12 @@ include "admin_header.php";
   <div class="menu-area">
     <div class="categheading"> <!-- Fetching Category Names -->
       <?php
-        $catid = $_GET['catid'] ?? '1';
+        $catid = $_GET['CategoryID'] ?? '1';
         $headings = find_categories($catid);
 
         while($heading = mysqli_fetch_assoc($headings)){
       ?>
-      <h1> <?php echo $heading['Category']; ?> </h1>
+      <h1> <?php echo $heading['Name']; ?> </h1>
       <?php } ?>
       <hr/>
     </div>
@@ -50,5 +50,5 @@ include "admin_header.php";
 
 
 
-</script>
+      
 </html>

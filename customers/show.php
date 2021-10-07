@@ -29,7 +29,7 @@ require_once "../dblib.php";
       <li><a href="#">About Us</a></li>
 	  <li><a href="#">Contact</a></li>
       <li><a href="../admin.php">Admin</a></li>
-      <li class="active"><a href="show.php">Manage Customers</a></li>
+      <li class="active"><a href="show.php">Manage Enquiry</a></li>
 
     </ul>
     <ul class="nav navbar-nav navbar-right">
@@ -45,31 +45,29 @@ require_once "../dblib.php";
 
 <div class="customers-section">
   <div class="customers-section-header">
-      <h2>Manage customers</h1>
+      <h2>Manage Enquiry</h1>
   </div>
   <table class="customers-table" >
       <tr>
-          <th>ID</th>
+          <th>MSG ID</th>
           <th>Full Name</th>
           <th>Email ID</th>
-          <th>Username</th>
-          <th>Phone Number</th>
-          <th colspan=3>Action</th>
+          <th>Phone number</th>
+          <th>Message</th>
+          
       </tr>
 
     <?php   
-        $customers=show_customers();
-        while($customer = mysqli_fetch_assoc($customers)){   
+        $details=show_enquiry_details();
+        while($detail = mysqli_fetch_assoc($details)){   
     ?>
       <tr>
-          <td><?php echo $customer['id']; ?></td>
-          <td><?php echo $customer['full_name']; ?></td>
-          <td><?php echo $customer['email']; ?></td>
-          <td><?php echo $customer['username']; ?></td>
-          <td><?php echo $customer['phone']; ?></td>
-          <td><button>View</button></td>
-          <td><button>Edit</button></td>
-          <td><button>Delete</button></td>
+          <td><?php echo $detail['msg_id']; ?></td>
+          <td><?php echo $detail['username']; ?></td>
+          <td><?php echo $detail['email']; ?></td>
+          <td><?php echo $detail['phone']; ?></td>
+          <td><?php echo $detail['message']; ?></td>
+         
 
       </tr>
     <?php } ?>

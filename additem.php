@@ -9,7 +9,10 @@ if(isset($_POST['submit'])){
 	$price=isset($_POST['price'])?$_POST['price']:"";
 	$image=isset($_POST['image'])?$_POST['image']:"";
 	$category=isset($_POST['category'])?$_POST['category']:"";
-
+  echo $name;
+  echo $price;
+  echo $image;
+  echo $category;
 	$msg=add_product($name,$description,$price,$image,$category);
     if($msg===true){
       $added = "Product added: ".$name;
@@ -23,6 +26,8 @@ if(isset($_POST['submit'])){
 	$image="";
 	$category="";
   }
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -175,7 +180,7 @@ input[type=reset]:hover {
       <li><a href="homepageadmin.php">Home</a></li>
       <li> <a href="adminmenu.php">Menu</a></li>
       <li><a href="#">About Us</a></li>
-			<li><a href="#">Contact</a></li>
+			<li><a href="ContactForm/admin_contact.php">Contact</a></li>
       <li class="active"><a href="admin.php">Admin</a></li>
       <li><a href="show.php">Manage Customers</a></li>
 
@@ -183,7 +188,6 @@ input[type=reset]:hover {
     <ul class="nav navbar-nav navbar-right">
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> ADMIN</a>
 				<ul class="dropdown-menu">
-					<li><a href="profile.php">Profile</a></li>
 					<li><a href="logout.php">Logout</a></li>
 				</ul>
 			</li>
@@ -191,7 +195,7 @@ input[type=reset]:hover {
   </div>
 </nav>
 
-  <div class="form" id="productform" >
+  <div class="form" id="productform" enctype= "multipart/form-data" >
 
   	<form action="additem.php" method="POST">
       
@@ -218,15 +222,15 @@ input[type=reset]:hover {
   		 <input type="text" id="price" name="price" value="" required><br><br>
 
   		 <label for="image">Image(pic.jpg):</label><br>
-  		 <input type="text" id="image" name="image" value="Images/" required><br><br>
+  		 <input type="text" id="image" name="image"  value="Images/" required><br><br>
 
        <?php 
 			 //$choices=array("1"=>"General","2"=>"Fiction"); 
 			 $choices=array();
 			 $list=array_values(get_categories());
 			 foreach($list as $item){
-				$id=$item['catid'];
-				$name=$item['Category'];			
+				$id=$item['CategoryID'];
+				$name=$item['Name'];			
 				$choices[$id]=$name;
 			 }
 			 echo html_create_select($choices, 'category', 'Category','');
@@ -237,7 +241,7 @@ input[type=reset]:hover {
        <br>
   		 <input  type="submit" name="submit" value="Add">
   		 <input  type="reset" name="reset "value="Clear">
-  		 <a href = "admin.php"><input  type="button" value="Cancel" />
+  		 <a href = "admin.php"><input  type="button" value="Cancel" /></a>
 </div>
       </form>
 

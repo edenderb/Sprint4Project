@@ -4,9 +4,24 @@ require_once "../htmllib.php";
 require_once "../dblib.php";
 
 $id = $_GET['ProductID'];
+$addIngredient='';
+if(isset($_POST['submit'])){
+	$ingredient_name=isset($_POST['ingredient-name'])?$_POST['ingredient-name']:"";
+	$description=isset($_POST['description'])?$_POST['description']:"";
+
+	$addIngredient=insert_new_ingredient_by_id($ingredient_name, $id, $description);
+    if($addIngredient===true){
+      $added = "Ingredient Added: ".$ingredient_name;
+    }else{
+    $added="Cannot Add Ingredient";
+    }
+  } else {
+  $ingredient_name="";
+  $description = "";
+	
+  }
 $products= find_product_matching($id);
 $ingredients = find_ingredients_by_product_id($id);
-
 
 
 ?>
@@ -132,9 +147,9 @@ img {
 
 .quality-image{
         display: block;
+        padding: 4px;
         border-radius: 4px;
         margin : 20px;
-        
         
 }
 .deleteButton {
@@ -145,6 +160,10 @@ img {
 	background-repeat:no-repeat;
 	background-size:cover;
   
+}
+td{
+  margin-top: -50px;
+  padding: 0px 20px 20px 20px;
 }
 
 @media screen and (min-width: 40em){
@@ -207,6 +226,7 @@ img {
     }
 }
 
+
 </style>
 <body>
 <div class= "nav-whole">
@@ -214,7 +234,7 @@ img {
     <a class="brand" href="#"><img src="../logo.jpeg"  width="100%" height="180px"></a>
   </div>
   <div class= "column2">
-    
+
   </div>
   <div class="cart-icon" style="margin-bottom: 15px;">
   </div>
@@ -226,16 +246,15 @@ img {
       </div>
       <ul class="nav navbar-nav">
           <li><a href="../homepageadmin.php">Home</a></li>
-          <li class="active"> <a href="../adminmenu.php">Menu</a></li>
+          <li> <a href="../adminmenu.php">Menu</a></li>
           <li><a href="#">About Us</a></li>
-			    <li><a href="#">Contact</a></li>
-          <li ><a href="../admin.php">Admin</a></li>
-          <li><a href="../customers/show.php">Manage Customers</a></li>
+			    <li><a href="ContactForm/admin_contact.php">Contact</a></li>
+          <li class="active"><a href="../admin.php">Admin</a></li>
+          <li><a href="../customers/show.php">Manage Enquiry</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
           <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> ADMIN</a>
 				  <ul class="dropdown-menu">
-					  <li><a href="profile.php">Profile</a></li>
 					  <li><a href="logout.php">Logout</a></li>
 				  </ul>
 			  </li>
@@ -263,27 +282,53 @@ img {
                    
           ?>
          <h2>  <?php echo $product['ProductName']; ?> </h2>
+      </div><!--product-heading-->
       <div class ="quality-image">   
          <img src="../<?php echo $product['Image']; ?>" alt="Food Items" height="400px" width=100%>
       </div>
-        </div><!--product-heading-->
-        
         Price: <?php echo $product['Price']; ?></br>
         Description: <?php echo $product['Description']; ?>
-        <?php } ?>
-        
       </div> <!--product-area--> 
               <hr>
      <div class= "ingredients-area">
        <h3> Ingredients </h3>
-
-          <?php 
-          while($ingredient = mysqli_fetch_assoc($ingredients)){
-            echo $ingredient['Name'];
-          ?>
-          <br>
-          <?php } ?>
-     </div>
+       <table>
+            <div class = "add-ingredients">
+            
+                <?php 
+                while($ingredient = mysqli_fetch_assoc($ingredients)){
+                ?>
+                
+                  <tr>
+                    <td><?php echo $ingredient['Name'];?></td>
+                    <td><?php echo $ingredient['Description']?> </td>
+                 <td> 
+                <div class = "ingredient-delete">
+                <a href="delete.php?IngredientID=<?php echo $ingredient['IngredientID'];?>&&ProductID=<?php echo $ingredient['ProductID'];?>" onClick="return confirm('Are you sure you want to delete?')">
+                <div class = "deleteButton"></div></a>
+                 </div>
+                 </td>
+                  </tr>
+                
+                <br>
+                <?php } ?>
+                </table>
+                <form action = "admin_ing.php?ProductID=<?php echo $product['ProductID'];?>" method="POST">
+                            <input type = "text" name="ingredient-name" id="ingredient-name" placeholder= "Ingrdient Name" required>
+                            <input type = "text" name = "description" id="description" placeholder = "Description" required>
+                            <input type="submit" name="submit" id="submit" value="Add Ingredient">
+                        </form>
+                    </div>
+                    <?php } ?>
+                    <h5 id="message">
+                            <?php 
+                                if(isset($added)){
+                                echo $added;
+                                }else {
+                                echo"";
+                                }
+                    ?></h5>
+     </div><!-- Ingredients Area -->
     </div><!--menu-area-->  
  </div><!--whole-->
 </html>

@@ -19,7 +19,7 @@ session_start();
 		{
 
 			//read from database
-			$query = "select * from Adminlogin where username = '$user_name' limit 1";
+			$query = "select * from Admin where AdminName = '$user_name' limit 1";
 			$conn=DB_open_connection();
 			$result = mysqli_query($conn, $query);
   
@@ -31,10 +31,10 @@ session_start();
 
 					$user_data = mysqli_fetch_assoc($result);
 
-					if($user_data['password'] === $password)
+					if($user_data['Password'] === $password)
 					{
 
-						$_SESSION['username'] = $user_data['username'];
+						$_SESSION['username'] = $user_data['AdminName'];
 						header("Location: homepageadmin.php");
 						die;
 					}
@@ -150,13 +150,11 @@ span.psw {
       <li><a href="homepage.php">Home</a></li>
       <li> <a href="customermenu.php">Menu</a></li>
       <li><a href="#">About Us</a></li>
-			<li><a href="#">Contact</a></li>
+			<li><a href="ContactForm/">Contact</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="RegistrationForm.php"><span class="glyphicon glyphicon-user"></span> Register</a>
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a>
 				<ul class="dropdown-menu">
-					<li><a href="loginascustomer.php">Login As Customer</a></li>
 					<li><a href="loginasadmin.php">Login As Admin</a></li>
 				</ul>
 			</li>

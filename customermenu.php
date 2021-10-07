@@ -16,7 +16,7 @@ require_once "htmllib.php";
     for ($i = 0; $i < $count; $i++){
       $category = mysqli_fetch_assoc($category_name);
     ?>
-      <a href="customermenu.php?catid=<?php echo $category['catid'] ?>"><?php echo $category['Category'];?></a>
+      <a href="customermenu.php?CategoryID=<?php echo $category['CategoryID'] ?>"><?php echo $category['Name'];?></a>
 
       
       <?php } ?>
@@ -24,12 +24,12 @@ require_once "htmllib.php";
   <div class="menu-area">
     <div class="categheading"> <!-- Fetching Category Names -->
       <?php
-        $catid = $_GET['catid'] ?? '1';
+        $catid = $_GET['CategoryID'] ?? '1';
         $headings = find_categories($catid);
 
         while($heading = mysqli_fetch_assoc($headings)){
       ?>
-      <h1> <?php echo $heading['Category']; ?> </h1>
+      <h1> <?php echo $heading['Name']; ?> </h1>
       <?php } ?>
       <hr/>
     </div>

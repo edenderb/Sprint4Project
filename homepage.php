@@ -25,13 +25,8 @@
     <a class="brand" href="#"><img src="logo.jpeg"  width="100%" height="180px"></a>
   </div>
   <div class= "column2">
-    <form class="search-bar" action="#">
-      <input type="text" placeholder="Search..." name="search">
-      <button type="submit" ><i class="fa fa-search"></i></button>
-    </form>
   </div>
   <div class="cart-icon">
-    <button style="width: 100%"><i class="fa fa-shopping-cart" style="font-size: 42px;"></i></button>
   </div>
 </div><!-- nav-whole-->
 <nav class="navbar navbar-inverse">
@@ -42,16 +37,12 @@
     <ul class="nav navbar-nav">
       <li class="active"><a href="#">Home</a></li>
       <li> <a href="customermenu.php">Menu</a></li>
-      <li><a href="#">About Us
-
-      </a></li>
-			<li><a href="#">Contact</a></li>
+      <li><a href="#">About Us</a></li>
+			<li><a href="ContactForm/">Contact</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="RegistrationForm.php"><span class="glyphicon glyphicon-user"></span> Register</a>
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a>
 				<ul class="dropdown-menu">
-					<li><a href="loginascustomer.php">Login As Customer</a></li>
 					<li><a href="loginasadmin.php">Login As Admin</a></li>
 				</ul>
 			</li>
